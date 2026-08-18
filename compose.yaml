@@ -1,0 +1,50 @@
+name: zechledger
+services:
+  app:
+    build: .
+    image: zechledger:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${ZECHLEDGER_PORT:-3000}:3000"
+    environment:
+      ZECHLEDGER_DATA_DIR: /data
+      ZECHLEDGER_ADMIN_TOKEN: ${ZECHLEDGER_ADMIN_TOKEN:-}
+      ZECHLEDGER_UNSAFE_DEMO_NO_AUTH: ${ZECHLEDGER_UNSAFE_DEMO_NO_AUTH:-false}
+      ZECHLEDGER_COOKIE_SECURE: ${ZECHLEDGER_COOKIE_SECURE:-true}
+      ZECHLEDGER_TRUST_PROXY: ${ZECHLEDGER_TRUST_PROXY:-false}
+      ZECHLEDGER_COMPANY_NAME: ${ZECHLEDGER_COMPANY_NAME:-}
+      ZECHLEDGER_COMPANY_LOGO_MARK: ${ZECHLEDGER_COMPANY_LOGO_MARK:-}
+      ZECHLEDGER_COMPANY_LEGAL_NAME: ${ZECHLEDGER_COMPANY_LEGAL_NAME:-}
+      ZECHLEDGER_COMPANY_TAX_ID: ${ZECHLEDGER_COMPANY_TAX_ID:-}
+      ZECHLEDGER_OPERATOR_NAME: ${ZECHLEDGER_OPERATOR_NAME:-}
+      ZECHLEDGER_FISCAL_PERIOD: ${ZECHLEDGER_FISCAL_PERIOD:-}
+      ZECHLEDGER_VAULT_METADATA_MAP: ${ZECHLEDGER_VAULT_METADATA_MAP:-}
+      ZECHLEDGER_DEMO_RATE_TRY: ${ZECHLEDGER_DEMO_RATE_TRY:-2950}
+      ZECHLEDGER_AUDIT_PRIVATE_KEY_PATH: ${ZECHLEDGER_AUDIT_PRIVATE_KEY_PATH:-}
+      ZECHLEDGER_AUDIT_PUBLIC_KEY_PATH: ${ZECHLEDGER_AUDIT_PUBLIC_KEY_PATH:-}
+      ZCASH_RPC_TIMEOUT_MS: ${ZCASH_RPC_TIMEOUT_MS:-12000}
+      ZCASH_MIN_CONFIRMATIONS: ${ZCASH_MIN_CONFIRMATIONS:-10}
+      ZCASH_EXPLORER_TX_URL: ${ZCASH_EXPLORER_TX_URL:-https://zexplorer.app/testnet/tx/}
+    volumes:
+      - zechledger-data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+volumes:
+  zechledger-data:

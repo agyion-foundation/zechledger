@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+.zechledger/
+.zechledger.lock
+ledger.json
+ledger.json.*.tmp
+coverage/
+*.log
+*.pem
+capsule*.json
+.DS_Store
+tsconfig.tsbuildinfo
+.vercel
+jury-video-kling/

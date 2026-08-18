@@ -1,0 +1,9 @@
+jury-video-kling/
+.git/
+.next/
+node_modules/
+coverage/
+.zechledger/
+*.log
+.env*
+tsconfig.tsbuildinfo

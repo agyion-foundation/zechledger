@@ -1,0 +1,66 @@
+{
+  "name": "zechledger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Privacy-preserving collections, double-entry accounting, and signed scoped audits on Zcash testnet.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apo110-dev/zechledger.git"
+  },
+  "homepage": "https://github.com/apo110-dev/zechledger#readme",
+  "bugs": {
+    "url": "https://github.com/apo110-dev/zechledger/issues"
+  },
+  "keywords": [
+    "zcash",
+    "testnet",
+    "accounting",
+    "privacy",
+    "nextjs"
+  ],
+  "packageManager": "npm@10.9.8",
+  "engines": {
+    "node": ">=22.0.0 <23",
+    "npm": ">=10 <11"
+  },
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1",
+    "build": "next build",
+    "start": "node scripts/start-standalone.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "check:rpc": "node scripts/check-rpc.mjs",
+    "verify:capsule": "node scripts/verify-capsule.mjs",
+    "z3:setup": "bash scripts/z3-testnet.sh setup",
+    "z3:start": "bash scripts/z3-testnet.sh start",
+    "z3:status": "bash scripts/z3-testnet.sh status"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.8.0",
+    "@scure/base": "^1.2.6",
+    "@vercel/blob": "^2.8.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.468.0",
+    "next": "16.3.1",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "recharts": "^3.10.1",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "16.3.1",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.10"
+  }
+}

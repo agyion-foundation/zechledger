@@ -1,0 +1,17 @@
+{
+  "name": "ZechLedger · Shielded Accounting",
+  "short_name": "ZechLedger",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#16231e",
+  "description": "Privacy-preserving accounting on Zcash testnet",
+  "icons": [
+    {
+      "src": "/zechledger-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

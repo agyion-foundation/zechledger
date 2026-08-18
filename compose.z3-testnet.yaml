@@ -1,0 +1,37 @@
+services:
+  app:
+    networks:
+      - default
+      - z3-testnet
+    volumes:
+      - zechledger-data:/data
+      - z3-testnet-cookie:/var/run/zebra-auth:ro
+    environment:
+      ZEBRA_RPC_URL: http://zebra:18232
+      ZEBRA_COOKIE_PATH: /var/run/zebra-auth/.cookie
+      ZEBRA_RPC_USER: ${ZEBRA_RPC_USER:-}
+      ZEBRA_RPC_PASSWORD: ${ZEBRA_RPC_PASSWORD:-}
+      ZALLET_RPC_URL: http://zallet:28232
+      ZALLET_RPC_USER: ${ZALLET_RPC_USER:-}
+      ZALLET_RPC_PASSWORD: ${ZALLET_RPC_PASSWORD:-}
+      ZALLET_COOKIE_PATH: ${ZALLET_COOKIE_PATH:-}
+      ZALLET_SYNC_MAX_ROWS: ${ZALLET_SYNC_MAX_ROWS:-5000}
+      ZALLET_ACCOUNT_UUID: ${ZALLET_ACCOUNT_UUID:-}
+      ZALLET_VAULT_ACCOUNT_MAP: ${ZALLET_VAULT_ACCOUNT_MAP:-}
+      ZCASH_VAULT_ADDRESS_MAP: ${ZCASH_VAULT_ADDRESS_MAP:-}
+      ZCASH_VAULT_UFVK_MAP: ${ZCASH_VAULT_UFVK_MAP:-}
+      ZCASH_RECEIVER_ADDRESS: ${ZCASH_RECEIVER_ADDRESS:-}
+      ZCASH_FROM_ADDRESS: ${ZCASH_FROM_ADDRESS:-}
+      ZCASH_ALLOW_SEND: ${ZCASH_ALLOW_SEND:-false}
+      ZCASH_WALLET_FLAVOR: ${ZCASH_WALLET_FLAVOR:-zallet}
+      ZCASH_FEE_ZEC: ${ZCASH_FEE_ZEC:-}
+      ZALLET_EXTERNAL_BROADCAST_CONFIRMED: ${ZALLET_EXTERNAL_BROADCAST_CONFIRMED:-false}
+      ZCASH_PRIVACY_POLICY: ${ZCASH_PRIVACY_POLICY:-FullPrivacy}
+networks:
+  z3-testnet:
+    external: true
+    name: z3-testnet
+volumes:
+  z3-testnet-cookie:
+    external: true
+    name: z3-testnet-cookie

@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.vercel
+.zechledger
+jury-video-kling
+.env*
+*.log
+zechledger-dashboard.png
+coverage
+tsconfig.tsbuildinfo
